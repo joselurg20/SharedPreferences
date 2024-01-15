@@ -2,46 +2,133 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wrapper"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#A60F2B"
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="-74dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DataSphere"
+        android:textColor="#fff"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049" />
+
+    <EditText
+        android:id="@+id/cet_name"
+        android:layout_width="335dp"
+        android:layout_height="48dp"
+        android:background="@drawable/et_style"
+        android:backgroundTint="#fff"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Dato"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.193" />
 
     <EditText
         android:id="@+id/cet_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="335dp"
+        android:layout_height="48dp"
+        android:background="@drawable/et_style"
+        android:backgroundTint="#fff"
         android:ems="10"
         android:inputType="text"
-        android:text="Name"
-        tools:layout_editor_absoluteX="97dp"
-        tools:layout_editor_absoluteY="108dp" />
+        android:text="Dato"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.301" />
 
     <EditText
         android:id="@+id/cet_valor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="335dp"
+        android:layout_height="48dp"
+        android:background="@drawable/et_style"
+        android:backgroundTint="#fff"
         android:ems="10"
         android:inputType="text"
-        android:text="Valor"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="257dp" />
+        android:text="Dato"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.423" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="leer"
-        android:text="leer"
-        tools:layout_editor_absoluteX="78dp"
-        tools:layout_editor_absoluteY="381dp" />
+        android:id="@+id/show"
+        android:layout_width="112dp"
+        android:layout_height="44dp"
+        android:backgroundTint="#BF5065"
+        android:text="Mostrar"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.784" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/save"
+        android:layout_width="112dp"
+        android:layout_height="44dp"
+        android:backgroundTint="#BF5065"
         android:onClick="guardar"
-        android:text="guardar"
-        tools:layout_editor_absoluteX="236dp"
-        tools:layout_editor_absoluteY="383dp" />
+        android:text="Guardar"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.792"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.784" />
+
+    <Button
+        android:id="@+id/showAll"
+        android:layout_width="288dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#BF5065"
+        android:onClick="leer"
+        android:text="Mostrar Todo"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.89" />
+
+    <FrameLayout
+        android:layout_width="272dp"
+        android:layout_height="157dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.634">
+
+        <EditText
+            android:id="@+id/result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/et_style"
+            android:backgroundTint="#FFFFFF"
+            android:ems="10"
+            android:inputType="text" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
