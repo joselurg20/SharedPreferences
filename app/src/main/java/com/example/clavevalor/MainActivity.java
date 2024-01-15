@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        met_dato= (EditText)  findViewById(R.id.cet_data);
+        met_dato= (EditText)  findViewById(R.id.cet_name);
         met_valor=(EditText) findViewById(R.id.cet_valor);
 
 
