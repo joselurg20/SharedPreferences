@@ -1,7 +1,5 @@
 package com.example.clavevalor;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,13 +11,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
     private EditText cetDato;
     private EditText cetValor;
-    private EditText cetName;  // Agrega esta línea
+    private EditText cetName;
 
     private Button btnGuardar;
     private Button btnLeer;
@@ -38,14 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
         cetDato = findViewById(R.id.cet_data);
         cetValor = findViewById(R.id.cet_valor);
-        cetName = findViewById(R.id.cet_name);  // Agrega esta línea
+        cetName = findViewById(R.id.cet_name);
         btnGuardar = findViewById(R.id.save);
         btnLeer = findViewById(R.id.show);
         btnBorrar = findViewById(R.id.delete);
         btnModificar = findViewById(R.id.modify);
         btnMostrarTodo = findViewById(R.id.showAll);
         etResultado = findViewById(R.id.etResultado);
-
 
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,22 +79,31 @@ public class MainActivity extends AppCompatActivity {
                 mostrarTodo();
             }
         });
+
+        Button btnLimpiar = findViewById(R.id.clear);
+
+        btnLimpiar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                limpiarCampos();
+            }
+        });
     }
 
     private void guardar() {
         String dato = cetDato.getText().toString();
         String valor = cetValor.getText().toString();
-        String name = cetName.getText().toString();  // Obtener el valor del nuevo campo
-
+        String name = cetName.getText().toString();
 
         SharedPreferences fichero = getSharedPreferences(SHARED_PREF_KEY, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = fichero.edit();
 
-        if (fichero.contains(dato)) {
-            Toast.makeText(this, "La clave ya existe. ¿Desea actualizarla?", Toast.LENGTH_SHORT).show();
-        } else {
+        String clave = dato + ":" + name;
 
-            editor.putString(dato, valor + ": "+ name);
+        if (fichero.contains(clave)) {
+            Toast.makeText(this, "El trío ya existe. ¿Desea actualizarlo?", Toast.LENGTH_SHORT).show();
+        } else {
+            editor.putString(clave, valor);
             editor.apply();
             Toast.makeText(this, "Datos guardados", Toast.LENGTH_SHORT).show();
         }
@@ -104,57 +111,69 @@ public class MainActivity extends AppCompatActivity {
 
     private void leer() {
         String dato = cetDato.getText().toString();
-        String name = cetName.getText().toString();  // Obtener el valor del nuevo campo
+        String name = cetName.getText().toString();
+        String valor = cetValor.getText().toString();
 
         SharedPreferences fichero = getSharedPreferences(SHARED_PREF_KEY, Context.MODE_PRIVATE);
 
-        String clave = dato + ": " + name ;
-
+        String clave = dato + ":" + name;
 
         if (fichero.contains(clave)) {
-            String valor = fichero.getString(dato, "");
-            cetValor.setText(valor);
+            String valorGuardado = fichero.getString(clave, "");
+            cetValor.setText(valorGuardado);
         } else {
-            Toast.makeText(this, "La clave no existe", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "El trío no existe", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void borrar() {
         String dato = cetDato.getText().toString();
-        String name = cetName.getText().toString();  // Obtener el valor del nuevo campo
+        String name = cetName.getText().toString();
+        String valor = cetValor.getText().toString();
         SharedPreferences fichero = getSharedPreferences(SHARED_PREF_KEY, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = fichero.edit();
 
-        // Usar los tres campos en la clave
-        String clave = dato + ": " + name;
+        String clave = dato + ":" + name;
 
         if (fichero.contains(clave)) {
             editor.remove(clave);
             editor.apply();
             Toast.makeText(this, "Dato eliminado", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "La clave no existe", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "El trío no existe", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void modificar() {
         String dato = cetDato.getText().toString();
-        String valor = cetValor.getText().toString();
-        String name = cetName.getText().toString();  // Obtener el valor del nuevo campo
+        String valorNuevo = cetValor.getText().toString();
+        String nameNuevo = cetName.getText().toString();
+
         SharedPreferences fichero = getSharedPreferences(SHARED_PREF_KEY, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = fichero.edit();
 
-        // Usar los tres campos en la clave
-        String clave = dato + ": " + name;
+        String claveAntigua = dato ;
+        String claveNueva = valorNuevo + ":" + nameNuevo;
 
-        if (fichero.contains(clave)) {
-            editor.putString(clave, valor);
-            editor.apply();
-            Toast.makeText(this, "Dato actualizado", Toast.LENGTH_SHORT).show();
+        if (fichero.contains(claveAntigua)) {
+            // Obtener el valor antiguo para comparar si ha cambiado
+            String valorAntiguo = fichero.getString(claveAntigua, "");
+
+            if (!claveAntigua.equals(claveNueva)) {
+                // Eliminar la clave antigua y agregar la nueva
+                editor.remove(claveAntigua);
+                editor.putString(claveNueva, valorAntiguo);
+                editor.apply();
+                Toast.makeText(this, "Dato(s) actualizado(s)", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Los nuevos valores son iguales a los anteriores", Toast.LENGTH_SHORT).show();
+            }
         } else {
-            Toast.makeText(this, "La clave no existe", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "El trío no existe", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
     private void mostrarTodo() {
         Log.d("MostrarTodo", "mostrarTodo() function called");
@@ -173,5 +192,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MostrarTodo", "Mostrando resultados: " + dataText.toString());
     }
 
-
+    private void limpiarCampos() {
+        cetDato.setText("");
+        cetValor.setText("");
+        cetName.setText("");
+    }
 }
