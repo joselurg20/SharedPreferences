@@ -8,35 +8,7 @@
     android:background="#A60F2B"
     tools:context=".MainActivity"
     tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="-74dp">
-
-    <Button
-        android:id="@+id/modify"
-        android:layout_width="112dp"
-        android:layout_height="44dp"
-        android:backgroundTint="#BF5065"
-        android:text="Modificar"
-        app:cornerRadius="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.792"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
-
-    <Button
-        android:id="@+id/delete"
-        android:layout_width="112dp"
-        android:layout_height="44dp"
-        android:backgroundTint="#BF5065"
-        android:text="Borrar"
-        app:cornerRadius="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.204"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+    tools:layout_editor_absoluteY="9dp">
 
     <TextView
         android:id="@+id/textView"
@@ -49,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.099" />
+        app:layout_constraintVertical_bias="0.023" />
 
     <EditText
         android:id="@+id/cet_data"
@@ -58,13 +30,28 @@
         android:background="@drawable/et_style"
         android:backgroundTint="#fff"
         android:ems="10"
+        android:hint="Introducir tercer dato"
         android:inputType="text"
-        android:text="Dato"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.279" />
+        app:layout_constraintVertical_bias="0.131" />
+
+    <EditText
+        android:id="@+id/cet_name"
+        android:layout_width="335dp"
+        android:layout_height="48dp"
+        android:background="@drawable/et_style"
+        android:backgroundTint="#fff"
+        android:ems="10"
+        android:hint="Introducir tercer dato"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.355" />
 
     <EditText
         android:id="@+id/cet_valor"
@@ -73,57 +60,28 @@
         android:background="@drawable/et_style"
         android:backgroundTint="#fff"
         android:ems="10"
+        android:hint="Introducir tercer dato"
         android:inputType="text"
-        android:text="Dato"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.408" />
+        app:layout_constraintVertical_bias="0.244" />
 
     <Button
-        android:id="@+id/show"
-        android:layout_width="112dp"
-        android:layout_height="44dp"
-        android:backgroundTint="#BF5065"
-        android:text="Mostrar"
+        android:id="@+id/clear"
+        android:layout_width="45dp"
+        android:layout_height="41dp"
+        android:background="@android:drawable/stat_notify_sync"
+        android:backgroundTint="@color/white"
+        android:foreground="@android:drawable/stat_notify_sync"
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.784" />
-
-    <Button
-        android:id="@+id/save"
-        android:layout_width="112dp"
-        android:layout_height="44dp"
-        android:backgroundTint="#BF5065"
-        android:onClick="guardar"
-        android:text="Guardar"
-        app:cornerRadius="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.792"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.784" />
-
-    <Button
-        android:id="@+id/showAll"
-        android:layout_width="288dp"
-        android:layout_height="55dp"
-        android:backgroundTint="#BF5065"
-        android:onClick="leer"
-        android:text="Mostrar Todo"
-        app:cornerRadius="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89" />
+        app:layout_constraintVertical_bias="0.44" />
 
     <FrameLayout
         android:id="@+id/list_item"
@@ -131,14 +89,15 @@
         android:layout_height="157dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.634">
+        app:layout_constraintVertical_bias="0.602">
 
         <EditText
             android:id="@+id/etResultado"
-            android:layout_width="254dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="135dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/et_style"
@@ -147,15 +106,87 @@
             android:inputType="textMultiLine"
             android:minLines="4"
             android:padding="8dp"
+            android:textColor="@color/white"
+            android:textColorHint="#B5B5B5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
-
-
-
-
     </FrameLayout>
+
+
+    <Button
+        android:id="@+id/showAll"
+        android:layout_width="288dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#DF8697"
+        android:onClick="leer"
+        android:text="Mostrar Todo"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.878" />
+
+    <Button
+        android:id="@+id/modify"
+        android:layout_width="112dp"
+        android:layout_height="44dp"
+        android:backgroundTint="#DF8697"
+        android:text="Modificar"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.792"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.965" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="112dp"
+        android:layout_height="44dp"
+        android:backgroundTint="#DF8697"
+        android:onClick="guardar"
+        android:text="Guardar"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.792"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.772" />
+
+
+    <Button
+        android:id="@+id/show"
+        android:layout_width="112dp"
+        android:layout_height="44dp"
+        android:backgroundTint="#DF8697"
+        android:text="Leer"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.772" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="112dp"
+        android:layout_height="44dp"
+        android:backgroundTint="#DF8697"
+        android:text="Borrar"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.965" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

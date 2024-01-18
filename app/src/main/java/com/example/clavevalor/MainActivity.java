@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText cetDato;
     private EditText cetValor;
+    private EditText cetName;  // Agrega esta línea
+
     private Button btnGuardar;
     private Button btnLeer;
     private Button btnBorrar;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         cetDato = findViewById(R.id.cet_data);
         cetValor = findViewById(R.id.cet_valor);
+        cetName = findViewById(R.id.cet_name);  // Agrega esta línea
         btnGuardar = findViewById(R.id.save);
         btnLeer = findViewById(R.id.show);
         btnBorrar = findViewById(R.id.delete);
@@ -83,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
     private void guardar() {
         String dato = cetDato.getText().toString();
         String valor = cetValor.getText().toString();
+        String name = cetName.getText().toString();  // Obtener el valor del nuevo campo
+
 
         SharedPreferences fichero = getSharedPreferences(SHARED_PREF_KEY, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = fichero.edit();
@@ -90,7 +95,8 @@ public class MainActivity extends AppCompatActivity {
         if (fichero.contains(dato)) {
             Toast.makeText(this, "La clave ya existe. ¿Desea actualizarla?", Toast.LENGTH_SHORT).show();
         } else {
-            editor.putString(dato, valor);
+
+            editor.putString(dato, valor + ": "+ name);
             editor.apply();
             Toast.makeText(this, "Datos guardados", Toast.LENGTH_SHORT).show();
         }
@@ -98,9 +104,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void leer() {
         String dato = cetDato.getText().toString();
+        String name = cetName.getText().toString();  // Obtener el valor del nuevo campo
+
         SharedPreferences fichero = getSharedPreferences(SHARED_PREF_KEY, Context.MODE_PRIVATE);
 
-        if (fichero.contains(dato)) {
+        String clave = dato + ": " + name ;
+
+
+        if (fichero.contains(clave)) {
             String valor = fichero.getString(dato, "");
             cetValor.setText(valor);
         } else {
@@ -110,11 +121,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void borrar() {
         String dato = cetDato.getText().toString();
+        String name = cetName.getText().toString();  // Obtener el valor del nuevo campo
         SharedPreferences fichero = getSharedPreferences(SHARED_PREF_KEY, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = fichero.edit();
 
-        if (fichero.contains(dato)) {
-            editor.remove(dato);
+        // Usar los tres campos en la clave
+        String clave = dato + ": " + name;
+
+        if (fichero.contains(clave)) {
+            editor.remove(clave);
             editor.apply();
             Toast.makeText(this, "Dato eliminado", Toast.LENGTH_SHORT).show();
         } else {
@@ -124,11 +139,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void modificar() {
         String dato = cetDato.getText().toString();
-        String nuevo_valor = cetValor.getText().toString();
+        String valor = cetValor.getText().toString();
+        String name = cetName.getText().toString();  // Obtener el valor del nuevo campo
         SharedPreferences fichero = getSharedPreferences(SHARED_PREF_KEY, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = fichero.edit();
-        if (fichero.contains(dato)) {
-            editor.putString(dato, nuevo_valor);
+
+        // Usar los tres campos en la clave
+        String clave = dato + ": " + name;
+
+        if (fichero.contains(clave)) {
+            editor.putString(clave, valor);
             editor.apply();
             Toast.makeText(this, "Dato actualizado", Toast.LENGTH_SHORT).show();
         } else {
